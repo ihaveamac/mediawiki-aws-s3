@@ -70,7 +70,7 @@ class AmazonS3Hooks {
 	protected function replaceLocalRepo() {
 		global $wgFileBackends, $wgLocalFileRepo, $wgAWSRepoHashLevels,
 			$wgAWSRepoDeletedHashLevels, $wgImgAuthPath,
-			$wgAWSRepoZones;
+			$wgAWSRepoZones, $wgScriptPath;
 
 		$wgLocalFileRepo = [
 			'class'             => 'LocalRepo',
@@ -79,7 +79,8 @@ class AmazonS3Hooks {
 			'url'               => $wgImgAuthPath ?: wfScript( 'img_auth' ),
 			'hashLevels'        => $wgAWSRepoHashLevels,
 			'deletedHashLevels' => $wgAWSRepoDeletedHashLevels,
-			'zones'             => []
+			'zones'             => [],
+			'scriptDirUrl' => $wgScriptPath
 		];
 
 		// Container names are prefixed by WikiId string, which depends on $wgDBPrefix and $wgDBname.
